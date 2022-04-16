@@ -1,33 +1,63 @@
 import { getMovie } from 'services/apiService';
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import {
+  useParams,
+  useNavigate,
+  //   useLocation,
+  Link,
+  Outlet,
+} from 'react-router-dom';
 
 export default function MovieDetalisPage() {
   const params = useParams();
   const [movie, setMovie] = useState(null);
 
   const navigate = useNavigate();
-  const location = useLocation();
+  //   const location = useLocation();
   const onBack = () => {
-    console.log('location', location);
-    navigate(location.state.from);
+    navigate(-1);
   };
   useEffect(() => {
     getMovie(params.id).then(movie => setMovie(movie));
   }, [params.id]);
   return (
-    <div>
-      <h1>MovieDetalis</h1>
-      <button onClick={onBack}>go back</button>
+    <>
       {movie && (
         <>
-          <h2>{movie.title}</h2>
-          <img
-            src={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
-            alt={movie.title}
-          />
+          <button type="button" onClick={onBack}>
+            Go back
+          </button>
+          <div>
+            <img
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
+                  : `https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg`
+              }
+              alt={movie.original_title}
+            />
+          </div>
+          <div>
+            <h2>{movie.original_title}</h2>
+            <p>{`Rating ${movie.vote_average}`}</p>
+            <h3>Owerview:</h3>
+            <p>{movie.overview}</p>
+            <h4>Ganres:</h4>
+            <div>
+              {movie.genres.map(({ id, name }) => (
+                <p key={id}>{name}</p>
+              ))}
+            </div>
+          </div>
         </>
       )}
-    </div>
+      <hr />
+      <h2>Additional information</h2>
+      <Link to="cast">Cast</Link>
+
+      <Link to="reviews">Rewiev</Link>
+
+      <Outlet />
+    </>
   );
 }

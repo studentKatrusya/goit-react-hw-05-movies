@@ -11,8 +11,8 @@ export default function MoviesPage() {
   const param = searchParams.get('query');
   useEffect(() => {
     if (param) {
-        getSearchMovie(param).then(res => setMovies(res));
-        setQuery(param);
+      getSearchMovie(param).then(res => setMovies(res));
+      setQuery(param);
     }
   }, [param]);
   const handleSubmit = e => {
@@ -27,7 +27,11 @@ export default function MoviesPage() {
   return (
     <div>
       <h1>MoviesPage</h1>
-      <SearchForm handleSetQuery={handleSetQuery} handleSubmit={handleSubmit} value={query} />
+      <SearchForm
+        handleSetQuery={handleSetQuery}
+        handleSubmit={handleSubmit}
+        value={query}
+      />
       <MoviesList movies={movies} />
     </div>
   );
