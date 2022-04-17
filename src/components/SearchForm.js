@@ -1,4 +1,5 @@
 import { Form, Btn, Input, Wrap } from './SearchForm.styled';
+import PropTypes from 'prop-types';
 
 export default function SearchForm({ handleSetQuery, handleSubmit, value }) {
   return (
@@ -14,3 +15,8 @@ export default function SearchForm({ handleSetQuery, handleSubmit, value }) {
     </Wrap>
   );
 }
+SearchForm.propTypes = {
+  handleSetQuery: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
