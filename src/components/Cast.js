@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getCast } from 'services/apiService';
 import { useParams } from 'react-router-dom';
+import { List, Item, Image } from './Cast.styled';
 
 export default function Cast() {
   const params = useParams();
@@ -14,10 +15,10 @@ export default function Cast() {
   return (
     <>
       {cast && (
-        <ul>
+        <List>
           {cast.cast.map(actor => (
-            <li key={actor.id}>
-              <img
+            <Item key={actor.id}>
+              <Image
                 src={
                   actor.profile_path
                     ? `https://image.tmdb.org/t/p/w200/${actor.profile_path}`
@@ -27,9 +28,9 @@ export default function Cast() {
               />
               <p>{actor.original_name}</p>
               <p>{actor.character}</p>
-            </li>
+            </Item>
           ))}
-        </ul>
+        </List>
       )}
     </>
   );

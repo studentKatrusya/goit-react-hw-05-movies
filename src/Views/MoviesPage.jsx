@@ -26,7 +26,7 @@ export default function MoviesPage() {
   };
   return (
     <div>
-      <h1>MoviesPage</h1>
+      <h1>Search Movies</h1>
       <SearchForm
         handleSetQuery={handleSetQuery}
         handleSubmit={handleSubmit}

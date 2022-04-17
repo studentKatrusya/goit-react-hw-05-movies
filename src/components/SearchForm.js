@@ -1,8 +1,16 @@
+import { Form, Btn, Input, Wrap } from './SearchForm.styled';
+
 export default function SearchForm({ handleSetQuery, handleSubmit, value }) {
   return (
-    <form onSubmit={handleSubmit}>
-      <input placeholder="movie name" onChange={handleSetQuery} value={value} />
-      <button type="submit">Search</button>
-    </form>
+    <Wrap>
+      <Form onSubmit={handleSubmit}>
+        <Input
+          placeholder="movie name"
+          onChange={handleSetQuery}
+          value={value}
+        />
+        <Btn type="submit">Search</Btn>
+      </Form>
+    </Wrap>
   );
 }

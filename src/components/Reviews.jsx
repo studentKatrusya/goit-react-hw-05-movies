@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { List, Item } from './Reviews.styled';
 import { useState, useEffect } from 'react';
 import { getReview } from 'services/apiService';
 export default function Reviews() {
@@ -17,16 +18,19 @@ export default function Reviews() {
     <>
       {rewiev &&
         (rewiev.results.length !== 0 ? (
-          <ul>
+          <List>
             {rewiev.results.map(actor => (
-              <li key={actor.id}>
-                <h2>author:</h2>
-                <p>{actor.author}</p>
-                <h2>content:</h2>
-                <p>{actor.content}</p>
-              </li>
+              <Item key={actor.id}>
+                <p>
+                  <strong>author:</strong> {actor.author}
+                </p>
+
+                <p>
+                  <strong>content:</strong> {actor.content}
+                </p>
+              </Item>
             ))}
-          </ul>
+          </List>
         ) : (
           <h2> We don't have any rewievs for this movie</h2>
         ))}
