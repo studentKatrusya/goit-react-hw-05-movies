@@ -9,6 +9,7 @@ export default function MoviesPage() {
   const [query, setQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams({});
   const param = searchParams.get('query');
+
   useEffect(() => {
     if (param) {
       getSearchMovie(param).then(res => setMovies(res));
